@@ -8,5 +8,5 @@
         "ioredis": "npm:ioredis@5",
         "dockerode": "npm:dockerode@4"
     },
-    "nodeModulesDir": true
+    "nodeModulesDir": "auto"
 }

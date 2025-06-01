@@ -62,7 +62,9 @@ class BrowserWorker {
         job: Job<JobPayload, ResultPayload>,
     ): Promise<ResultPayload> {
         const { sessionId } = job.data
-        console.log(`Processing job for session ${sessionId}, type: ${job.name}`)
+        console.log(
+            `Processing job for session ${sessionId}, type: ${job.name}`,
+        )
 
         try {
             switch (job.name) {
@@ -123,7 +125,9 @@ class BrowserWorker {
             // Set up auto-cleanup after timeout
             if (timeout) {
                 setTimeout(async () => {
-                    console.log(`Auto-terminating session ${sessionId} after timeout`)
+                    console.log(
+                        `Auto-terminating session ${sessionId} after timeout`,
+                    )
                     await this.terminateBrowser(sessionId)
                 }, timeout)
             }
@@ -172,7 +176,9 @@ class BrowserWorker {
                 this.activeContainers.delete(sessionId)
                 console.log(`Browser terminated for session ${sessionId}`)
             } else {
-                console.warn(`No active container found for session ${sessionId}`)
+                console.warn(
+                    `No active container found for session ${sessionId}`,
+                )
             }
 
             return {

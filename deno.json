@@ -5,7 +5,9 @@
         "lint": "deno lint",
         "format": "deno fmt",
         "format:check": "deno fmt --check",
-        "test": "deno test --allow-env --allow-net --allow-read"
+        "test": "deno test --allow-env --allow-net --allow-read",
+        "sync-config": "deno run --allow-read --allow-write scripts/sync-config.ts",
+        "setup": "deno run --allow-read --allow-write --allow-run scripts/setup-dev.ts"
     },
     "lint": {
         "rules": {

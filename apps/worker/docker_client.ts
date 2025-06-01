@@ -116,11 +116,13 @@ export class DockerClient {
 
             console.log(`Container ${containerId} terminated`)
         } catch (error) {
-            // Container might already be stopped/removed
-            console.warn(
-                `Error terminating container ${containerId}:`,
-                error.message,
-            )
+            if (error instanceof Error) {
+                // Container might already be stopped/removed
+                console.warn(
+                    `Error terminating container ${containerId}:`,
+                    error.message,
+                )
+            }
 
             if (port) {
                 this.usedPorts.delete(port)

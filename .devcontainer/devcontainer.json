@@ -53,7 +53,7 @@
         6379,
         8080
     ],
-    "postCreateCommand": "deno --version && redis-cli --version && echo 'Dev container setup complete!'",
+    "postCreateCommand": "deno --version && redis-cli --version && echo 'Syncing shared configuration...' && deno task sync-config && echo 'Dev container setup complete!'",
     "remoteUser": "root",
     "shutdownAction": "stopCompose",
     "mounts": [

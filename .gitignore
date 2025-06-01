@@ -202,55 +202,17 @@ dist
 .history
 .ionide
 
+# Support for Project snippet scope
+.vscode/*.code-snippets
+
+# Ignore code-workspaces
+*.code-workspace
+
 # End of https://www.toptal.com/developers/gitignore/api/deno,node,macos,visualstudiocode
 
-# Deno
-.deno/
-deno.lock
-node_modules/
-
-# Fresh build artifacts
-_fresh/
-
-# Logs
-*.log
-logs/
-
-# Environment variables
-.env
-.env.local
-.env.production
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# IDE
-.vscode/settings.json
-.idea/
-*.swp
-*.swo
-
-# Docker
-.dockerignore
-
-# Temporary files
-*.tmp
-*.temp
-
-# Redis dumps
-dump.rdb
-
-# Coverage reports
-coverage/
-.nyc_output/
-
-# npm debug logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Browser Factory Generated Files
+# Generated deno.json files (created from base-deno.json + shared config)
+apps/worker/deno.json
+apps/api-fresh/deno.json
+# Pattern for future apps
+apps/*/deno.json
