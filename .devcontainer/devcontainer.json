@@ -1,57 +1,62 @@
 {
-  "name": "Browser Factory Dev Environment",
-  "dockerComposeFile": ["../docker-compose.dev.yml"],
-  "service": "workspace",
-  "workspaceFolder": "/workspaces/browserfactory",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "denoland.vscode-deno",
-        "ms-azuretools.vscode-docker",
-        "p1c2u.docker-compose",
-        "ms-vscode.vscode-typescript-next",
-        "bradlc.vscode-tailwindcss",
-        "esbenp.prettier-vscode"
-      ],
-      "settings": {
-        "deno.enable": true,
-        "deno.lint": true,
-        "deno.unstable": [],
-        "deno.suggest.imports.hosts": {
-          "https://deno.land": true,
-          "https://cdn.skypack.dev": true,
-          "https://x.nest.land": true
-        },
-        "deno.config": "./deno.json",
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "vscode.typescript-language-features",
-        "[typescript]": {
-          "editor.defaultFormatter": null
-        },
-        "[typescriptreact]": {
-          "editor.defaultFormatter": null
-        },
-        "[json]": {
-          "editor.defaultFormatter": "vscode.json-language-features"
-        },
-        "[jsonc]": {
-          "editor.defaultFormatter": "vscode.json-language-features"
-        },
-        "terminal.integrated.defaultProfile.linux": "bash",
-        "files.exclude": {
-          "**/.git": true,
-          "**/node_modules": true,
-          "**/.DS_Store": true,
-          "**/Thumbs.db": true
+    "name": "Browser Factory Dev Environment",
+    "dockerComposeFile": [
+        "../docker-compose.dev.yml"
+    ],
+    "service": "workspace",
+    "workspaceFolder": "/workspaces/browserfactory",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "denoland.vscode-deno",
+                "ms-azuretools.vscode-docker",
+                "p1c2u.docker-compose",
+                "ms-vscode.vscode-typescript-next",
+                "bradlc.vscode-tailwindcss"
+            ],
+            "settings": {
+                "deno.enable": true,
+                "deno.lint": true,
+                "deno.unstable": [],
+                "deno.suggest.imports.hosts": {
+                    "https://deno.land": true,
+                    "https://cdn.skypack.dev": true,
+                    "https://x.nest.land": true
+                },
+                "deno.config": "./deno.json",
+                "editor.formatOnSave": true,
+                "editor.defaultFormatter": "vscode.typescript-language-features",
+                "[typescript]": {
+                    "editor.defaultFormatter": null
+                },
+                "[typescriptreact]": {
+                    "editor.defaultFormatter": null
+                },
+                "[json]": {
+                    "editor.defaultFormatter": "vscode.json-language-features"
+                },
+                "[jsonc]": {
+                    "editor.defaultFormatter": "vscode.json-language-features"
+                },
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "files.exclude": {
+                    "**/.git": true,
+                    "**/node_modules": true,
+                    "**/.DS_Store": true,
+                    "**/Thumbs.db": true
+                }
+            }
         }
-      }
-    }
-  },
-  "forwardPorts": [3000, 6379, 8080],
-  "postCreateCommand": "deno --version && redis-cli --version && echo 'Dev container setup complete!'",
-  "remoteUser": "root",
-  "shutdownAction": "stopCompose",
-  "mounts": [
-    "source=${localWorkspaceFolder},target=/workspaces/browserfactory,type=bind,consistency=cached"
-  ]
+    },
+    "forwardPorts": [
+        3000,
+        6379,
+        8080
+    ],
+    "postCreateCommand": "deno --version && redis-cli --version && echo 'Dev container setup complete!'",
+    "remoteUser": "root",
+    "shutdownAction": "stopCompose",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspaces/browserfactory,type=bind,consistency=cached"
+    ]
 }

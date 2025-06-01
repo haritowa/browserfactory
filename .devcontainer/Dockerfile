@@ -22,5 +22,15 @@ EXPOSE 3000 6379 8080
 # Set working directory
 WORKDIR /workspaces/browserfactory
 
+# Copy dependency files first
+COPY deno.json deno.lock* ./
+
+# Copy libs directory
+COPY libs/ ./libs/
+
+# Cache dependencies for all TypeScript files in libs directory
+RUN find ./libs -name "*.ts" -type f -exec deno cache {} +
+
+
 # Default command
 CMD ["sleep", "infinity"]

@@ -4,8 +4,8 @@ services:
   # Development workspace container
   workspace:
     build:
-      context: .devcontainer
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: .devcontainer/Dockerfile
     volumes:
       - .:/workspaces/browserfactory:cached
       - /var/run/docker.sock:/var/run/docker.sock

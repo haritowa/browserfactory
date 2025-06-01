@@ -5,14 +5,11 @@ WORKDIR /app
 # Copy dependency files first
 COPY deno.json deno.lock* ./
 
-# Copy main.ts and other necessary files for dependency resolution
-COPY main.ts fresh.config.ts ./
+# Copy remaining source code
+COPY . .
 
 # Cache dependencies (this will resolve the remote URLs)
 RUN deno cache main.ts
-
-# Copy remaining source code
-COPY . .
 
 EXPOSE 3000
 

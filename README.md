@@ -118,9 +118,9 @@ Response:
 
 ```json
 {
-  "sessionId": "session_1703123456789_abc123def",
-  "status": "accepted",
-  "message": "Browser creation request queued"
+    "sessionId": "session_1703123456789_abc123def",
+    "status": "accepted",
+    "message": "Browser creation request queued"
 }
 ```
 
@@ -134,13 +134,13 @@ Response:
 
 ```json
 {
-  "sessionId": "session_1703123456789_abc123def",
-  "status": "completed",
-  "browserWssUrl": "ws://localhost:9223",
-  "containerId": "abc123...",
-  "containerPort": 9223,
-  "startedAt": 1703123456789,
-  "completedAt": 1703123456890
+    "sessionId": "session_1703123456789_abc123def",
+    "status": "completed",
+    "browserWssUrl": "ws://localhost:9223",
+    "containerId": "abc123...",
+    "containerPort": 9223,
+    "startedAt": 1703123456789,
+    "completedAt": 1703123456890
 }
 ```
 
