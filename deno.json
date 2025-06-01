@@ -37,7 +37,8 @@
         ]
     },
     "imports": {
-        "$std/": "https://deno.land/std@0.208.0/"
+        "$std/": "https://deno.land/std@0.208.0/",
+        "typed-inject": "npm:typed-inject@^4.0.0"
     },
     "compilerOptions": {
         "allowJs": true,
