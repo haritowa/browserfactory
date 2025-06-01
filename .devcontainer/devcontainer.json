@@ -54,9 +54,23 @@
         8080
     ],
     "postCreateCommand": "deno --version && redis-cli --version && echo 'Syncing shared configuration...' && deno task sync-config && echo 'Dev container setup complete!'",
+    "postStartCommand": "git config --global commit.gpgsign false && git config --global --unset gpg.ssh.program 2>/dev/null || true && git config --global --unset user.signingkey 2>/dev/null || true && echo 'Git configured for container environment'",
     "remoteUser": "root",
     "shutdownAction": "stopCompose",
     "mounts": [
         "source=${localWorkspaceFolder},target=/workspaces/browserfactory,type=bind,consistency=cached"
-    ]
+    ],
+    "features": {
+        "ghcr.io/devcontainers/features/sshd:1": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "version": "latest",
+            "enableNonRootDocker": "true",
+            "moby": "true"
+        }
+    },
+    "remoteEnv": {
+        "SSH_AUTH_SOCK": "${localEnv:SSH_AUTH_SOCK}"
+    }
 }
