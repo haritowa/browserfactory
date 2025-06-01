@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  # Development workspace container
+  workspace:
+    build:
+      context: .devcontainer
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspaces/browserfactory:cached
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /workspaces/browserfactory
+    command: sleep infinity
+    networks:
+      - dev-network
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_dev_data:/data
+    networks:
+      - dev-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Optional: Run API server in dev mode
+  api-fresh:
+    build:
+      context: .
+      dockerfile: apps/api-fresh/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - DENO_ENV=development
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./apps/api-fresh:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: deno task dev
+    networks:
+      - dev-network
+    profiles:
+      - services
+
+  # Optional: Run worker in dev mode
+  worker:
+    build:
+      context: .
+      dockerfile: apps/worker/Dockerfile
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - DENO_ENV=development
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./apps/worker:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: deno task dev
+    networks:
+      - dev-network
+    profiles:
+      - services
+
+volumes:
+  redis_dev_data:
+
+networks:
+  dev-network:
